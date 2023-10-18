@@ -37,13 +37,31 @@ void print_string(va_list args)
 	}
 }
 /**
+ * print_reversed_string - to print a string in reverse
+ * @args: the arguments
+ */
+void print_reversed_string(va_list args)
+{
+	char *str = va_arg(args, char *);
+	int i;
+
+	if (str != NULL)
+	{
+		int len = strlen(str);
+		for (i = len - 1; i >= 0; i--)
+		{
+			_putchar(str[i]);
+		}
+	}
+}
+/**
  * _printf - the main required printf
  * @format: the passed data
  * Return: the result
  */
 int _printf(const char *format, ...)
 {
-	int chr = 0;
+	int chr = 0, i;
 	va_list args;
 
 	if (format == NULL)
@@ -72,6 +90,16 @@ int _printf(const char *format, ...)
 			{
 				print_string(args);
 				chr += strlen(va_arg(args, char *));
+			}
+
+			else if (*format == 'r')
+			{
+				char *str = va_arg(args, char *);
+				int len = strlen(str);
+				for (i = len - 1; i >= 0; i--) {
+					_putchar(str[i]);
+				}
+				chr += len;
 			}
 		}
 		format++;
