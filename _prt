@@ -1,0 +1,69 @@
+#include<stdio.h>
+#include "main.h"
+#include<stdarg.h>
+#include<string.h>
+
+/**
+ * _printf - the printf function
+ * @format: the format neeed for parameters
+ * Return: 0 on sucess
+ */
+int _printf(const char *format, ...)
+{
+	int chr = 0;
+
+	va_list args;
+
+	if (format == NULL)
+	{
+		return (-1);
+	}
+
+	va_start(args, format);
+
+	while (*format)
+	{
+		if (*format != '%')
+		{
+			write(1, format, 1);
+			chr++;
+		}
+		else
+		{
+			format++;
+			if (format == '\0')
+			{
+				break;
+			}
+			if (*format == '%')
+			{
+				write(1, format, 1);
+				chr++;
+			}
+			else if (*format == 'c')
+			{
+				char ch = va_arg(args, int);
+
+				write(1, &ch, 1);
+				chr++;
+			}
+			else if (*format == 's')
+			{
+				char *str = va_arg(args, char*);
+				int len = 0;
+
+				while (str[len] != '\0')
+				{
+					len++;
+				}
+				write (1, str, len);
+				chr += len;
+
+			}
+		}
+		format++;
+	}
+	va_end(args);
+	return (chr);
+}
+
