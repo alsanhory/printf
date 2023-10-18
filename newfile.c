@@ -1,5 +1,15 @@
 #include "main.h"
 /**
+ * _putchar - to print character
+ * @c: the character
+ * Return: on sucess
+ */
+int _putchar(char c)
+{
+	return (write(1, &c, 1));
+}
+
+/**
  * print_string - to support
  * @c: the string
  * Return: the number
@@ -12,7 +22,7 @@ int print_string(char *c)
 	{
 		for (count = 0; c[count] != '\0'; count++)
 		{
-			putchar(c[count]);
+			_putchar(c[count]);
 		}
 	}
 	return (count);
@@ -34,11 +44,11 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] != '%')
 		{
-			putchar(format[i]);
+			_putchar(format[i]);
 		}
 		else if (format[i + 1] == 'c')
 		{
-			putchar(va_arg(args, int));
+			_putchar(va_arg(args, int));
 			i++;
 		}
 		else if (format[i + 1] == 's')
@@ -49,7 +59,7 @@ int _printf(const char *format, ...)
 		}
 		else if (format[i + 1] == '%')
 		{
-			putchar('%');
+			_putchar('%');
 		}
 		count += 1;
 	}
