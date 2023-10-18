@@ -9,7 +9,7 @@
  */
 int _putchar(char c)
 {
-        return (write(1, &c, 1));
+	return (write(1, &c, 1));
 }
 /**
  * print_string - to support
@@ -18,16 +18,16 @@ int _putchar(char c)
  */
 int print_string(char *c)
 {
-        int count = 0;
+	int count = 0;
 
-        if (c)
-        {
-                for (count = 0; c[count] != '\0'; count++)
-                {
-                        _putchar(c[count]);
-                }
-        }
-        return (count);
+	if (c)
+	{
+		for (count = 0; c[count] != '\0'; count++)
+		{
+			_putchar(c[count]);
+		}
+	}
+	return (count);
 }
 int _printf(const char *format, ...)
 {
@@ -106,6 +106,13 @@ int _printf(const char *format, ...)
 			else if (*format == '%')
 			{
 				_putchar('%');
+				char_count++;
+			}
+			else
+			{
+				_putchar('%');
+				char_count++;
+				_putchar(*format);
 				char_count++;
 			}
 		}
